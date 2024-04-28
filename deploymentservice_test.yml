@@ -15,12 +15,12 @@ spec:
       containers:
       - name: sample-deployment
         image: edc_ci_image:5
-         ports:
+        ports:  # Correct indentation
         - containerPort: 80
       imagePullSecrets:
       - name: docker-registry-secret
       
- ---
+---
 
 apiVersion: v1
 kind: Service
