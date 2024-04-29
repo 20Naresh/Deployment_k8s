@@ -18,7 +18,7 @@ spec:
         ports:  # Correct indentation
         - containerPort: 81
       imagePullSecrets:
-      - name: docker-registry-secret
+      - name: myregistrykey
       
 ---
 
