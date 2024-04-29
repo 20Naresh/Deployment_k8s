@@ -18,7 +18,7 @@ spec:
         ports:
         - containerPort: 81
       imagePullSecrets:
-      - name: secrets-docker-hub
+      - name: myregistrykey
 
 ---
 
