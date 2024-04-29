@@ -18,14 +18,14 @@ spec:
         ports:  # Correct indentation
         - containerPort: 81
       imagePullSecrets:
-      - name: docker-hub-cred1
+      - name: docker-hub-cred
       
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: my-deployment
 spec:
   selector:
     app: nginx
