@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: sample-deployment
-        image: edc_ci_image:5
+        image: nash20/edc_ci_image:5
         ports:  # Correct indentation
         - containerPort: 81
       imagePullSecrets:
