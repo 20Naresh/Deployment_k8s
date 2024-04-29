@@ -1,37 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-deployment
+  name: jenkins-deployment
+  labels:
+    app: jenkinsapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-app
+      app: jenkinsapp
   template:
     metadata:
       labels:
-        app: my-app
+        app: jenkinsapp 
     spec:
       containers:
-      - name: sample-deployment
-        image: nash20/edc_ci_image:5
-        ports:  # Correct indentation
-        - containerPort: 81
-      imagePullSecrets:
-      - name: docker-registry-secret
-      
+      - name: jenkinsserver
+        image: jenkins/jenkins:latest
+        ports:
+        - containerPort: 8080
+        
+        
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: jenkinsapp-service
 spec:
   selector:
-    app: nginx
+    app: jenkinsapp 
   type: LoadBalancer
   ports:
   - protocol: TCP
     port: 5000
-    targetPort: 81
-    nodePort: 31107     
+    targetPort: 8080
+    nodePort: 31108
