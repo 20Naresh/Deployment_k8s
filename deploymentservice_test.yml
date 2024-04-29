@@ -15,17 +15,17 @@ spec:
       containers:
       - name: sample-deployment
         image: nash20/edc_ci_image:5
-        ports:  # Correct indentation
+        ports:
         - containerPort: 81
       imagePullSecrets:
       - name: secrets-docker-hub
-      
+
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-deployment
+  name: my-service  # Changed to a unique name
 spec:
   selector:
     app: my-app
@@ -34,4 +34,4 @@ spec:
   - protocol: TCP
     port: 5000
     targetPort: 81
-    nodePort: 31107     
+    nodePort: 31107
