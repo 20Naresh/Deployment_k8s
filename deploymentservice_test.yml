@@ -16,7 +16,7 @@ spec:
       - name: sample-deployment
         image: edc_ci_image:5
         ports:  # Correct indentation
-        - containerPort: 80
+        - containerPort: 81
       imagePullSecrets:
       - name: docker-registry-secret
       
@@ -33,5 +33,5 @@ spec:
   ports:
   - protocol: TCP
     port: 5000
-    targetPort: 80
+    targetPort: 81
     nodePort: 31107     
