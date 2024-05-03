@@ -21,7 +21,6 @@ spec:
       - name: myregistrykey
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
