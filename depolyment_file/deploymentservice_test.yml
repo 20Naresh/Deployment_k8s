@@ -16,7 +16,7 @@ spec:
       - name: pull-deploy
         image: nash20/edc_ci_image:54
         ports:
-        - containerPort: 81
+        - containerPort: 8083
       imagePullSecrets:
       - name: myregistrykey
 
@@ -32,5 +32,5 @@ spec:
   ports:
   - protocol: TCP
     port: 5000
-    targetPort: 81
+    targetPort: 8083
     nodePort: 31104
