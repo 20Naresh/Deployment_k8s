@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pull-name
+  name: rust
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pull-app
+      app: rust
   template:
     metadata:
       labels:
-        app: pull-app
+        app: rust
     spec:
       containers:
       - name: pull-deploy
@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: pull-ser
+  name: rust-service
 spec:
   selector:
-    app: pull-app
+    app: rust
   type: LoadBalancer
   ports:
   - protocol: TCP
