@@ -13,7 +13,7 @@ spec:
         app: rust
     spec:
       containers:
-      - name: pull-deploy
+      - name: rust
         image: nash20/edc_ci_image:54
         ports:
         - containerPort: 8083
