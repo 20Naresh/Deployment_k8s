@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rust
+  name: rust-deployment
 spec:
   replicas: 1
   selector:
@@ -19,7 +19,6 @@ spec:
         - containerPort: 8083
       imagePullSecrets:
       - name: myregistrykey
-
 ---
 apiVersion: v1
 kind: Service
@@ -28,8 +27,9 @@ metadata:
 spec:
   selector:
     app: rust
-  type: LoadBalancer
   ports:
-  - protocol: TCP
-    port: 5000
-    targetPort: 8083
+    - protocol: TCP
+      port: 80
+      targetPort: 8083
+      nodePort: 31103 
+  type: NodePort
