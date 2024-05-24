@@ -1,34 +1,51 @@
-apiVersion: apps/v1
-kind: Deployment
+---
+apiVersion: v1
+kind: Pod
 metadata:
-  name: nginx-deployment
+  name: nginx-jenkins-pod
   labels:
-    app: nginx
+    app: webserver-ci
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:latest
-        ports:
-        - containerPort: 80
+  containers:
+  - name: nginx
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+  - name: jenkins
+    image: jenkins/jenkins:lts
+    ports:
+    - containerPort: 8080
+    - containerPort: 50000
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
+  labels:
+    app: webserver-ci
 spec:
   selector:
-    app: nginx
+    app: webserver-ci
   ports:
   - protocol: TCP
     port: 80
     targetPort: 80
-  type: LoadBalancer
+  type: LoadBalancer  # Use 'NodePort' if LoadBalancer is not available
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-service
+  labels:
+    app: webserver-ci
+spec:
+  selector:
+    app: webserver-ci
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  - protocol: TCP
+    port: 50000
+    targetPort: 50000
+  type: LoadBalancer  # Use 'NodePort' if LoadBalancer is not available
